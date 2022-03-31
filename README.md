@@ -15,7 +15,8 @@ Then open `./packages/benchmarks/dist/index.html` and use the browser to execute
 
 ### My Results for the "Mount deep tree" Benchmark
 
-This test renders 639 elements with approximately 17 CSS properties each.
+This test renders 639 elements with approximately 17 CSS properties each except for the cases ("..._minimal", "..._medium")
+which reduce the number of CSS properties to show the performance impact.
 
 | Styling Implementation | Time in ms | Implementation Desc |
 |--------------------|:------------------:|-------|
