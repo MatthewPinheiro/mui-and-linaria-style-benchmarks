@@ -1,7 +1,20 @@
 import { css } from '@linaria/core';
 import React from 'react';
 
-// Same as the viewStyle below, but in proper CSS syntax
+class View extends React.Component {
+  render() {
+    const { classNames, ...other } = this.props;
+    return (
+      <div
+        {...other}
+        className={[viewClassName, ...classNames].join(' ')}
+      />
+    );
+  }
+}
+
+
+
 const viewClassName = css`
   align-items: stretch;
   border-width: 0;
@@ -17,17 +30,5 @@ const viewClassName = css`
   min-height: 0;
   min-width: 0;
 `;
-
-class View extends React.Component {
-  render() {
-    const { classNames, ...other } = this.props;
-    return (
-      <div
-        {...other}
-        className={[viewClassName, ...classNames].join(' ')}
-      />
-    );
-  }
-}
 
 export default View;

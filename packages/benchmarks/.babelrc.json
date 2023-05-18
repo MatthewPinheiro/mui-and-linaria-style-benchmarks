@@ -1,3 +1,6 @@
 {
-    "presets": ["../../scripts/babel/preset.js", "@linaria"]
+    "presets": [
+        "../../scripts/babel/preset.js", 
+        "@linaria"
+    ]
 }
