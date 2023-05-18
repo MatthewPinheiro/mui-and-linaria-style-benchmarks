@@ -10,8 +10,7 @@ const Dot = styled.div`
   border-style: solid;
   border-top-width: 0;
   transform: translate(50%, 50%);
-  border-bottom-color: red;
-  /* border-bottom-color: ${props => props.color}; */
+  border-bottom-color: ${props => props.color};
   border-right-width: ${props => `${props.size / 2}px`};
   border-bottom-width: ${props => `${props.size / 2}px`};
   border-left-width: ${props => `${props.size / 2}px`};
