@@ -1,6 +1,8 @@
 const babelPreset = require('../../scripts/babel/preset');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const path = require('path');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
 
 const appDirectory = path.resolve(__dirname);
 
@@ -18,34 +20,50 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto'
+      },
+      {
+        test: /\.js$/,
+        include: [path.resolve(appDirectory, 'src')],
         use: [
-          'style-loader',
           {
-            loader: 'css-loader',
+            loader: 'babel-loader',
             options: {
-              modules: {
-                localIdentName: '[hash:base64:8]'
-              }
+              cacheDirectory: false,
+              presets: [babelPreset],
+              plugins: ['styled-jsx/babel']
+            }
+          },
+          {
+            loader: '@linaria/webpack-loader',
+            options: {
+              sourceMap: process.env.NODE_ENV !== 'production',
             }
           }
         ]
       },
       {
-        test: /\.js$/,
-        include: [path.resolve(appDirectory, 'src')],
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: false,
-            presets: [babelPreset],
-            plugins: ['styled-jsx/babel']
-          }
-        }
-      }
+        test: /\.css$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: process.env.NODE_ENV !== 'production'
+            }
+          },
+        ]
+      },
     ]
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: 'styles.css',
+    }),
     new BundleAnalyzerPlugin({
       analyzerMode: 'static',
       openAnalyzer: false

@@ -2,6 +2,14 @@ import App from './app/App';
 import impl from './impl';
 import Tree from './cases/Tree';
 import SierpinskiTriangle from './cases/SierpinskiTriangle';
+// import { css } from '@linaria/core';
+
+// const header = css`
+//   font-size: 1.5em;
+//   text-align: center;
+//   color: palevioletred;
+// `;
+// console.log(header);
 
 import React from 'react';
 import ReactDOM from 'react-dom';
